@@ -1,3 +1,8 @@
+{-
+  (c) 2022 Owen Bechtel 
+  Released under the MIT license (see LICENSE file)
+-}
+
 {-# LANGUAGE LambdaCase, TemplateHaskell #-}
 import Graphics.Gloss.Interface.Pure.Game
 import Linear
