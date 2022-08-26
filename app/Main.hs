@@ -1,8 +1,3 @@
-{-
-  (c) 2022 Owen Bechtel 
-  Released under the MIT license (see LICENSE file)
--}
-
 {-# LANGUAGE LambdaCase, TemplateHaskell #-}
 import Graphics.Gloss.Interface.Pure.Game
 import Linear
@@ -19,25 +14,13 @@ pointDistance = 1/10
 data World = World (M33 Float) [(V3 Float, Color)]
 
 rotation :: Float -> Float -> M33 Float
-rotation speed angle = t3 !*! t2 !*! t1
+rotation speed angle = V3
+  (V3 (a*a*c + b*b) (a*b*c - a*b) (a*d))
+  (V3 (a*b*c - a*b) (b*b*c + a*a) (b*d))
+  (V3 (-a*d) (-b*d) c)
   where
     (a, b) = (cos angle, sin angle)
     (c, d) = (cos speed, sin speed)
-
-    t1 = V3
-      (V3 a b 0)
-      (V3 (-b) a 0)
-      (V3 0 0 1)
-
-    t2 = V3
-      (V3 c 0 d)
-      (V3 0 1 0)
-      (V3 (-d) 0 c)
-
-    t3 = V3
-      (V3 a (-b) 0)
-      (V3 b a 0)
-      (V3 0 0 1)
 
 main :: IO ()
 main = play
