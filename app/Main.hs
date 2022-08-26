@@ -11,7 +11,9 @@ maxSpeed = 0.05
 pointSize = 15
 pointDistance = 1/10
 
-data World = World (M33 Float) [(V3 Float, Color)]
+data World = World
+  (M33 Float)         --transformation matrix to apply each frame
+  [(V3 Float, Color)] --list of points to display
 
 rotation :: Float -> Float -> M33 Float
 rotation speed angle = V3
