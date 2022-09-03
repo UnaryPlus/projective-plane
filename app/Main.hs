@@ -8,7 +8,7 @@ tau = 2 * pi
 windowSize = 620
 radius = 300
 maxSpeed = 0.05
-pointSize = 15
+pointSize = 7.5
 pointDistance = 1/10
 
 data World = World
@@ -50,8 +50,8 @@ draw (World _ points) =
   where
     drawPoint (V3 x y z, color) =
       let (x', y') = if z > 0 then (x, y) else (-x, -y) in
-      (Color color . translate (x' * radius) (y' * radius))
-      (ThickCircle 0 pointSize)
+      (Color color . Translate (x' * radius) (y' * radius))
+      (circleSolid pointSize)
 
 input :: Event -> World -> World
 input event (World mat points) = World mat' points
